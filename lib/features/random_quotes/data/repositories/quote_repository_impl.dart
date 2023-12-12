@@ -24,7 +24,7 @@ class QuoteRepositoryImpl extends QuoteRepository {
       try {
         final QuoteModel randomRemoteQuote =
             await randomQuoteRemoteDataSource.getRandomQuote();
-        randomQuoteLocalDataSource.cachQuote(randomRemoteQuote);
+        randomQuoteLocalDataSource.cacheQuote(randomRemoteQuote);
         return Right(randomRemoteQuote);
       } on ServerException {
         return Left(ServerFailure());

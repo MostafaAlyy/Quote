@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class RandomQuoteLocalDataSource {
   Future<QuoteModel> getLastRandomQuote();
-  Future<void> cachQuote(QuoteModel quote);
+  Future<void> cacheQuote(QuoteModel quote);
 }
 
 class RandomQuoteLocalDataSourceImpl implements RandomQuoteLocalDataSource {
@@ -15,7 +15,7 @@ class RandomQuoteLocalDataSourceImpl implements RandomQuoteLocalDataSource {
   SharedPreferences sharedPreferences;
 
   @override
-  Future<void> cachQuote(QuoteModel quote) {
+  Future<void> cacheQuote(QuoteModel quote) {
     return sharedPreferences.setString(
         AppStrings.cachedRandomQuote, json.encode(quote));
   }
