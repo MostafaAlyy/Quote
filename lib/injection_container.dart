@@ -5,6 +5,7 @@ import 'package:quotes/core/api/api_consumer.dart';
 import 'package:quotes/core/api/app_interceptors.dart';
 import 'package:quotes/core/api/dio_consumer.dart';
 import 'package:quotes/core/network/network_info.dart';
+import 'package:quotes/features/home/presentation/cubit/home_cubit.dart';
 import 'package:quotes/features/random_quotes/data/datasources/random_quote_local_data.dart';
 import 'package:quotes/features/random_quotes/data/datasources/random_quote_remote_data.dart';
 import 'package:quotes/features/random_quotes/data/repositories/quote_repository_impl.dart';
@@ -28,6 +29,7 @@ Future<void> serviceLocatorInit() async {
       () => RandomQuotesCubit(getRandomQuoteUseCase: sl()));
   sl.registerFactory<LocaleCubit>(
       () => LocaleCubit(changeLangUseCase: sl(), getSavedLangUseCase: sl()));
+  sl.registerFactory<HomeCubit>(() => HomeCubit());
   // Use Cases
   sl.registerLazySingleton(() => GetRandomQuote(quoteRepository: sl()));
   sl.registerLazySingleton(() => ChangeLangUseCase(langRepositories: sl()));

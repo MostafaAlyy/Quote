@@ -55,27 +55,30 @@ class _QuotesStackState extends State<QuotesStack> {
               : cupit.initRandomQuotesList();
         });
       } else {
-        return SizedBox(
-          height: context.height * 0.8,
-          child: Center(
-            child: Stack(
-              children: [
-                Center(
-                  child: SpinKitFadingCircle(
-                    color: AppColors.primaryColor,
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: SizedBox(
+            height: context.height * 0.8,
+            child: Center(
+              child: Stack(
+                children: [
+                  Center(
+                    child: SpinKitFadingCircle(
+                      color: AppColors.primaryColor,
+                    ),
                   ),
-                ),
-                SwipeableCardsSection(
-                  cardController: widget.cardController,
-                  context: context,
-                  items: cupit.quotesList,
-                  onCardSwiped: (dir, index, widget) {
-                    cupit.getRandomQuote();
-                  },
-                  enableSwipeUp: true,
-                  enableSwipeDown: false,
-                ),
-              ],
+                  SwipeableCardsSection(
+                    cardController: widget.cardController,
+                    context: context,
+                    items: cupit.quotesList,
+                    onCardSwiped: (dir, index, widget) {
+                      cupit.getRandomQuote();
+                    },
+                    enableSwipeUp: true,
+                    enableSwipeDown: false,
+                  ),
+                ],
+              ),
             ),
           ),
         );

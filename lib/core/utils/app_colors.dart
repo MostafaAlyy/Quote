@@ -6,4 +6,5 @@ class AppColors {
   static const Color hintColor = Colors.grey;
   static Color appBarTitleColor = HexColor("#FFFDD0");
   static Color backgroundColor = HexColor("#000000");
+  static Color secondaryColor = HexColor("#474634");
 }
