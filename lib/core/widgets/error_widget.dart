@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quotes/config/locale/app_localizations.dart';
 import 'package:quotes/core/utils/app_colors.dart';
 
 class ErrorWidget extends StatelessWidget {
@@ -13,16 +14,17 @@ class ErrorWidget extends StatelessWidget {
           const Icon(Icons.warning_amber_outlined, size: 80),
           Padding(
             padding: const EdgeInsets.only(top: 16),
-            child: Text("Something went wrong",
+            child: Text(
+                AppLocalizations.of(context)!
+                    .translate('something_went_wrong')!,
                 style: Theme.of(context).textTheme.bodyMedium),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: Text("Please try again",
+            child: Text(AppLocalizations.of(context)!.translate('try_again')!,
                 style: Theme.of(context).textTheme.bodySmall),
           ),
           SizedBox(
-            width: 150,
             height: 48,
             child: ElevatedButton(
               onPressed: () {
@@ -36,7 +38,8 @@ class ErrorWidget extends StatelessWidget {
                     side: BorderSide(color: AppColors.primaryColor),
                     borderRadius: BorderRadius.circular(24)),
               ),
-              child: Text('Reload page',
+              child: Text(
+                  AppLocalizations.of(context)!.translate('reload_screen')!,
                   style: Theme.of(context).textTheme.bodySmall),
             ),
           )

@@ -8,4 +8,7 @@ class AppStrings {
   static const String unexpectedFailureMsg = 'Unexpected Failure';
   static const String applicationJson = 'application/json';
   static const String contentType = 'Content-Type';
+  static const String locale = 'locale';
+  static const String arabicCode = 'ar';
+  static const String englishCode = 'en';
 }
