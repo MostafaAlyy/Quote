@@ -63,7 +63,6 @@ flutter:
     - lang/ar.json
     - lang/en.json
     - assets/images/quote.png
-    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
