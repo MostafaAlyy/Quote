@@ -1,7 +1,5 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:quotes/core/utils/app_colors.dart';
 import 'package:quotes/features/random_quotes/presentation/cubit/random_quotes_cubit.dart';
 
