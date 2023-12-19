@@ -1,4 +1,3 @@
-
 import 'package:quotes/core/api/api_consumer.dart';
 import 'package:quotes/core/api/end_points.dart';
 import 'package:quotes/features/random_quotes/data/models/quote_model.dart';

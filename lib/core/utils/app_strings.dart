@@ -11,4 +11,5 @@ class AppStrings {
   static const String locale = 'locale';
   static const String arabicCode = 'ar';
   static const String englishCode = 'en';
+  static const String cachedQuoteCategories = 'CASHED_QUOTE_CATEGORIES';
 }
