@@ -7,13 +7,12 @@ import 'package:quotes/features/search/domain/entities/search_quote_response.dar
 import 'package:quotes/features/search/domain/repositories/search_repository.dart';
 
 class SearchRepositoryImpl extends SearchRepository {
-  final NetworkInfo networkInfo;
   final SearchRemoteDataSource searchRemoteDataSource;
 
   SearchRepositoryImpl({
-    required this.networkInfo,
     required this.searchRemoteDataSource,
   });
+
   @override
   Future<Either<Failure, SearchQuotesResponse>> searchQuote(
       String query) async {

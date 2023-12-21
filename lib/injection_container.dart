@@ -19,6 +19,10 @@ import 'package:quotes/features/random_quotes/data/repositories/quote_repository
 import 'package:quotes/features/random_quotes/domain/repositories/quote_repository.dart';
 import 'package:quotes/features/random_quotes/domain/usecases/get_random_quote.dart';
 import 'package:quotes/features/random_quotes/presentation/cubit/random_quotes_cubit.dart';
+import 'package:quotes/features/search/data/datasources/search_remote_data_source.dart';
+import 'package:quotes/features/search/data/repositories/search_repository_impl.dart';
+import 'package:quotes/features/search/domain/repositories/search_repository.dart';
+import 'package:quotes/features/search/domain/usecases/search_quote_use_case.dart';
 import 'package:quotes/features/search/presentation/cubit/search_cubit.dart';
 import 'package:quotes/features/splash/data/datasources/lang_local_data_sourse.dart';
 import 'package:quotes/features/splash/data/repositories/lang_repositories_impl.dart';
@@ -38,7 +42,7 @@ Future<void> serviceLocatorInit() async {
   sl.registerFactory<LocaleCubit>(
       () => LocaleCubit(changeLangUseCase: sl(), getSavedLangUseCase: sl()));
   sl.registerFactory<HomeCubit>(() => HomeCubit());
-  sl.registerFactory<SearchCubit>(() => SearchCubit());
+  sl.registerFactory<SearchCubit>(() => SearchCubit(searchQuoteUseCase: sl()));
   sl.registerFactory<CategoriesCubit>(() => CategoriesCubit(
       getQuoteCategoriesUseCase: sl(), getQuoteByCategoryUseCase: sl()));
 
@@ -46,6 +50,7 @@ Future<void> serviceLocatorInit() async {
   sl.registerLazySingleton(() => GetRandomQuote(quoteRepository: sl()));
   sl.registerLazySingleton(() => ChangeLangUseCase(langRepositories: sl()));
   sl.registerLazySingleton(() => GetSavedLangUseCase(langRepositories: sl()));
+  sl.registerLazySingleton(() => SearchQuoteUseCase(searchRepository: sl()));
   sl.registerLazySingleton(
       () => GetQuoteCategoriesUseCase(categoryRepository: sl()));
   sl.registerLazySingleton(
@@ -61,6 +66,9 @@ Future<void> serviceLocatorInit() async {
 
   sl.registerLazySingleton<CategoryRepository>(() => CategoryRepositoryImpl(
       networkInfo: sl(), localDataSource: sl(), remoteDataSource: sl()));
+  sl.registerLazySingleton<SearchRepository>(() => SearchRepositoryImpl(
+        searchRemoteDataSource: sl(),
+      ));
 
   // Data Sources
   sl.registerLazySingleton<RandomQuoteLocalDataSource>(
@@ -73,6 +81,8 @@ Future<void> serviceLocatorInit() async {
       () => QuoteCategoryLocalDataSourceImpl(sharedPreferences: sl()));
   sl.registerLazySingleton<QuoteCategoryRemoteDataSource>(
       () => QuoteCategoryRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<SearchRemoteDataSource>(
+      () => SearchRemoteDataSourceImpl(apiConsumer: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(

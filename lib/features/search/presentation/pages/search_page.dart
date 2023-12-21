@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:quotes/core/utils/app_colors.dart';
 import 'package:quotes/features/search/presentation/cubit/search_cubit.dart';
+import 'package:quotes/features/search/presentation/widgets/quote_list_view.dart';
+import 'package:quotes/features/search/presentation/widgets/seach_bar.dart';
 import 'package:quotes/injection_container.dart' as di;
+import 'package:quotes/core/widgets/error_widget.dart' as error_widget;
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -18,27 +22,33 @@ class SearchPage extends StatelessWidget {
         child: BlocBuilder<SearchCubit, SearchState>(
           builder: (context, state) {
             var cupit = SearchCubit.get(context);
-            return Column(
-              children: [
-                TextField(
-                  controller: cupit.searchController,
-                  style: const TextStyle(color: Colors.white),
-                  cursorColor: AppColors.primaryColor,
-                  decoration: InputDecoration(
-                    label: const Text('Search'),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: AppColors.primaryColor,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30.r),
-                      ),
-                    ),
+            if (state is SearchError) {
+              return error_widget.ErrorWidget(onPress: () {
+                cupit.searchQuote();
+              });
+            } else {
+              return Column(
+                children: [
+                  SearchBarWidget(cupit: cupit),
+                  SizedBox(
+                    height: 20.h,
                   ),
-                ),
-              ],
-            );
+                  if (state is SearchLoading)
+                    Center(
+                      child: SpinKitFadingCircle(
+                        color: AppColors.primaryColor,
+                      ),
+                    )
+                  else if (state is SearchLoaded)
+                    if (state.searchQuotesResponse.results.isEmpty)
+                      const Center(child: Text('No results found'))
+                    else
+                      QuoteListView(
+                        quotes: state.searchQuotesResponse.results,
+                      ),
+                ],
+              );
+            }
           },
         ),
       ),
