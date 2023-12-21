@@ -8,7 +8,7 @@ ThemeData appTheme() {
       hintColor: AppColors.hintColor,
       brightness: Brightness.light,
       scaffoldBackgroundColor: AppColors.backgroundColor,
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
       useMaterial3: true,
       fontFamily: AppStrings.fontFamily,
       appBarTheme: const AppBarTheme(

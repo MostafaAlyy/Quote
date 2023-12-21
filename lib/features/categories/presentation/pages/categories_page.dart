@@ -36,7 +36,7 @@ class CategoriesPage extends StatelessWidget {
               mainAxisSpacing: 20.r,
               childAspectRatio: 1.5),
           itemBuilder: (context, index) =>
-              CategoryCard(title: cupit.categoriesList[index].id),
+              CategoryCard(title: cupit.categoriesList[index].name),
         );
       },
     ));

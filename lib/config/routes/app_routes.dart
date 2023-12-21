@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quotes/core/utils/app_strings.dart';
 import 'package:quotes/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:quotes/features/categories/presentation/pages/quotes_by_category.dart';
 import 'package:quotes/features/home/presentation/pages/home_page.dart';
 import 'package:quotes/features/random_quotes/presentation/cubit/random_quotes_cubit.dart';
 import 'package:quotes/features/splash/presentation/pages/splash_screen.dart';
@@ -10,6 +11,7 @@ import 'package:quotes/injection_container.dart' as di;
 class Routes {
   static const String initialRoute = '/';
   static const String homePageRoute = '/homePage';
+  static const String quotesByCategory = '/quotesByCategory';
 }
 
 class AppRoutes {
@@ -33,7 +35,14 @@ class AppRoutes {
             child: const HomePage(),
           ),
         );
-
+      case Routes.quotesByCategory:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => di.sl<CategoriesCubit>(),
+            child: QuoteByCategoryScreen(
+                category: routeSettings.arguments as String),
+          ),
+        );
       default:
         return undefinedRoute();
     }

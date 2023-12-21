@@ -18,3 +18,27 @@ class GetCategoriesListError extends CategoriesState {
 
   const GetCategoriesListError({required this.msg});
 }
+
+class CategoryQuotesListLoading extends CategoriesState {}
+
+class CategoryQuotesListError extends CategoriesState {
+  final String msg;
+
+  const CategoryQuotesListError({required this.msg});
+}
+
+class CategoryQuotesListLoaded extends CategoriesState {}
+
+class CategoryQuotesLoading extends CategoriesState {}
+
+class CategoryQuotesError extends CategoriesState {
+  final String msg;
+
+  const CategoryQuotesError({required this.msg});
+}
+
+class CategoryQuotesLoaded extends CategoriesState {
+  final Quote quote;
+
+  const CategoryQuotesLoaded({required this.quote});
+}

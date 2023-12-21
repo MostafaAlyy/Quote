@@ -6,6 +6,7 @@ import 'package:quotes/features/categories/data/datasources/quote_category_local
 import 'package:quotes/features/categories/data/datasources/quote_category_remote_data.dart';
 import 'package:quotes/features/categories/domain/entities/quote_category.dart';
 import 'package:quotes/features/categories/domain/repositories/categories_repository.dart';
+import 'package:quotes/features/random_quotes/data/models/quote_model.dart';
 
 class CategoryRepositoryImpl implements CategoryRepository {
   final QuoteCategoryRemoteDataSource remoteDataSource;
@@ -32,6 +33,28 @@ class CategoryRepositoryImpl implements CategoryRepository {
       try {
         final localCategories = await localDataSource.getLastCategories();
         return Right(localCategories);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, QuoteModel>> getCategoryQuote(String category) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final QuoteModel categoryRemoteQuote =
+            await remoteDataSource.getCategoryQuote(category);
+        localDataSource.cacheCategoryQuote(categoryRemoteQuote, category);
+        return Right(categoryRemoteQuote);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final QuoteModel categoryLocalQuote =
+            await localDataSource.getLastCategoryQuote(category);
+        return Right(categoryLocalQuote);
       } on CacheException {
         return Left(CacheFailure());
       }
