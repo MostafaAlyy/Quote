@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:quotes/core/error/exceptions.dart';
 import 'package:quotes/core/error/failure.dart';
-import 'package:quotes/core/network/network_info.dart';
 import 'package:quotes/features/search/data/datasources/search_remote_data_source.dart';
 import 'package:quotes/features/search/domain/entities/search_quote_response.dart';
 import 'package:quotes/features/search/domain/repositories/search_repository.dart';

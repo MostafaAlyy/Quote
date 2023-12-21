@@ -16,7 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<Widget> pages = [
     QuoteScreen(),
     const CategoriesPage(),
-    SearchPage(),
+    const SearchPage(),
     const FavoriteQuoteScreen()
   ];
   int currentPageIndex = 0;

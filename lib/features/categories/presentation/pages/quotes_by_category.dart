@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:quotes/core/utils/app_colors.dart';
 import 'package:quotes/features/categories/presentation/cubit/categories_cubit.dart';
-import 'package:quotes/features/random_quotes/presentation/cubit/random_quotes_cubit.dart';
 import 'package:quotes/features/random_quotes/presentation/widgets/quote_stack.dart';
 import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 import 'package:quotes/core/widgets/error_widget.dart' as error_widget;

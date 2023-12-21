@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quotes/core/utils/app_colors.dart';
-import 'package:quotes/features/random_quotes/presentation/cubit/random_quotes_cubit.dart';
 
 class QuoteCard extends StatelessWidget {
   const QuoteCard({super.key, required this.msg, required this.author});

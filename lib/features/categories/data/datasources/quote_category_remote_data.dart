@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:quotes/core/api/api_consumer.dart';
 import 'package:quotes/core/api/end_points.dart';
 import 'package:quotes/features/categories/data/models/quote_category_model.dart';
