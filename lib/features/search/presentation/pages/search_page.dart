@@ -15,43 +15,44 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
-      padding: EdgeInsets.all(12.r),
-      child: BlocProvider(
-        create: (context) => di.sl<SearchCubit>(),
-        child: BlocBuilder<SearchCubit, SearchState>(
-          builder: (context, state) {
-            var cupit = SearchCubit.get(context);
-            if (state is SearchError) {
-              return error_widget.ErrorWidget(onPress: () {
-                cupit.searchQuote();
-              });
-            } else {
-              return Column(
-                children: [
-                  SearchBarWidget(cupit: cupit),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  if (state is SearchLoading)
-                    Center(
-                      child: SpinKitFadingCircle(
-                        color: AppColors.primaryColor,
+          padding: EdgeInsets.all(12.r),
+          child: BlocProvider(
+            create: (context) => di.sl<SearchCubit>(),
+            child: BlocBuilder<SearchCubit, SearchState>(
+              builder: (context, state) {
+                var cupit = SearchCubit.get(context);
+                if (state is SearchError) {
+                  return error_widget.ErrorWidget(onPress: () {
+                    cupit.searchQuote();
+                  });
+                } else {
+                  return Column(
+                    children: [
+                      SearchBarWidget(cupit: cupit),
+                      SizedBox(
+                        height: 20.h,
                       ),
-                    )
-                  else if (state is SearchLoaded)
-                    if (state.searchQuotesResponse.results.isEmpty)
-                      const Center(child: Text('No results found'))
-                    else
-                      QuoteListView(
-                        quotes: state.searchQuotesResponse.results,
-                      ),
-                ],
-              );
-            }
-          },
-        ),
-      ),
-    ));
+                      if (state is SearchLoading)
+                        Center(
+                          child: SpinKitFadingCircle(
+                            color: AppColors.primaryColor,
+                          ),
+                        )
+                      else if (state is SearchLoaded)
+                        if (state.searchQuotesResponse.results.isEmpty)
+                          const Center(child: Text('No results found'))
+                        else
+                          QuoteListView(
+                            quotes: state.searchQuotesResponse.results,
+                          ),
+                    ],
+                  );
+                }
+              },
+            ),
+          ),
+        ));
   }
 }
