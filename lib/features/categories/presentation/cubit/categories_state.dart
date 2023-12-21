@@ -8,3 +8,13 @@ abstract class CategoriesState extends Equatable {
 }
 
 class CategoriesInitial extends CategoriesState {}
+
+class GetCategoriesListLoading extends CategoriesState {}
+
+class CategoriesListLoaded extends CategoriesState {}
+
+class GetCategoriesListError extends CategoriesState {
+  final String msg;
+
+  const GetCategoriesListError({required this.msg});
+}

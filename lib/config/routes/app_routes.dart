@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quotes/core/utils/app_strings.dart';
+import 'package:quotes/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:quotes/features/home/presentation/pages/home_page.dart';
 import 'package:quotes/features/random_quotes/presentation/cubit/random_quotes_cubit.dart';
 import 'package:quotes/features/splash/presentation/pages/splash_screen.dart';
@@ -18,9 +19,17 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) => const SplashScreen());
       case Routes.homePageRoute:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                di.sl<RandomQuotesCubit>()..initRandomQuotesList(),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    di.sl<RandomQuotesCubit>()..initRandomQuotesList(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    di.sl<CategoriesCubit>()..initCategoriesList(),
+              ),
+            ],
             child: const HomePage(),
           ),
         );
