@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:quotes/core/error/exceptions.dart';
 import 'package:quotes/features/random_quotes/data/models/quote_model.dart';
 import 'package:quotes/features/random_quotes/domain/entities/quote.dart';
@@ -7,7 +8,7 @@ abstract class FavoriteQuoteLocalDataSource {
   Future<void> initDatabase();
   Future<void> addQuote(Quote quote);
   Future<void> deleteQuote(Quote quote);
-  Future<List<Quote>> getFavoriteQuotes();
+  Future<Set<Quote>> getFavoriteQuotes();
 }
 
 class FavoriteQuoteLocalDataSourceImpl implements FavoriteQuoteLocalDataSource {
@@ -29,9 +30,10 @@ class FavoriteQuoteLocalDataSourceImpl implements FavoriteQuoteLocalDataSource {
   @override
   Future<void> addQuote(Quote quote) async {
     try {
-      await database.execute(
-          'INSERT INTO favorite_quotes(id,quote, author) VALUES(${quote.id},${quote.content}, ${quote.author})');
+      await database.rawInsert(
+          'INSERT INTO favorite_quotes(id,quote, author) VALUES("${quote.id}","${quote.content}", "${quote.author}")');
     } catch (e) {
+      debugPrint(e.toString());
       throw LocalDatabaseException();
     }
   }
@@ -40,18 +42,19 @@ class FavoriteQuoteLocalDataSourceImpl implements FavoriteQuoteLocalDataSource {
   Future<void> deleteQuote(Quote quote) async {
     try {
       await database
-          .execute('DELETE FROM favorite_quotes WHERE id = ${quote.id}');
+          .execute('DELETE FROM favorite_quotes WHERE id = "${quote.id}"');
     } catch (e) {
       throw LocalDatabaseException();
     }
   }
 
   @override
-  Future<List<Quote>> getFavoriteQuotes() async {
+  Future<Set<Quote>> getFavoriteQuotes() async {
     try {
-      List<Quote> quotes = [];
+      Set<Quote> quotes = {};
       database.rawQuery('SELECT * FROM favorite_quotes').then((value) => {
             value.forEach((element) {
+              debugPrint(element.toString());
               quotes.add(QuoteModel(
                   author: element['author'] as String,
                   content: element['quote'] as String,

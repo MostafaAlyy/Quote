@@ -33,9 +33,8 @@ class AppRoutes {
                     di.sl<CategoriesCubit>()..initCategoriesList(),
               ),
               BlocProvider(
-                create: (context) => di.sl<FavoriteQuoteCubit>()
-                  ..initFavoriteDatabase()
-                  ..getFavoriteQuotes(),
+                create: (context) =>
+                    di.sl<FavoriteQuoteCubit>()..initFavoriteDatabase(),
               ),
             ],
             child: const HomePage(),

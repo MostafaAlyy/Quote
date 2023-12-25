@@ -5,7 +5,7 @@ import 'package:quotes/features/random_quotes/presentation/cubit/random_quotes_c
 import 'package:quotes/features/random_quotes/presentation/widgets/quote_stack.dart';
 import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 import 'package:quotes/core/widgets/error_widget.dart' as error_widget;
-import 'package:quotes/features/random_quotes/presentation/widgets/quote_card.dart';
+import 'package:quotes/core/widgets/quote_card.dart';
 import 'package:quotes/core/utils/media_query_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,8 +22,7 @@ class QuoteScreen extends StatelessWidget {
         listener: (context, state) {
       if (state is RandomQuotesLoaded) {
         cardController.addItem(QuoteCard(
-          author: state.quote.author,
-          msg: state.quote.content,
+          quote: state.quote,
         ));
       }
     }, builder: (context, state) {

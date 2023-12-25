@@ -9,7 +9,7 @@ import 'package:quotes/features/categories/domain/entities/quote_category.dart';
 import 'package:quotes/features/categories/domain/usecases/get_quote_by_category.dart';
 import 'package:quotes/features/categories/domain/usecases/get_quote_categories_usecase.dart';
 import 'package:quotes/features/random_quotes/domain/entities/quote.dart';
-import 'package:quotes/features/random_quotes/presentation/widgets/quote_card.dart';
+import 'package:quotes/core/widgets/quote_card.dart';
 
 part 'categories_state.dart';
 
@@ -48,8 +48,9 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       response.fold(
           (failure) =>
               emit(CategoryQuotesListError(msg: mapFailureToMsg(failure))),
-          (quote) => quotesByCategoryList
-              .add(QuoteCard(msg: quote.content, author: quote.author)));
+          (quote) => quotesByCategoryList.add(QuoteCard(
+                quote: quote,
+              )));
     }
     emit(CategoryQuotesListLoaded());
   }

@@ -26,7 +26,7 @@ class FavoriteQuoteRepositoryImpl implements FavoriteQuoteRepository {
   }
 
   @override
-  Future<Either<Failure, List<Quote>>> getFavoriteQuotes() async {
+  Future<Either<Failure, Set<Quote>>> getFavoriteQuotes() async {
     try {
       final quotes = await localDataSource.getFavoriteQuotes();
       return Right(quotes);

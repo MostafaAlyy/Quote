@@ -6,7 +6,7 @@ import 'package:quotes/core/usecases/usecase.dart';
 import 'package:quotes/core/utils/app_strings.dart';
 import 'package:quotes/features/random_quotes/domain/entities/quote.dart';
 import 'package:quotes/features/random_quotes/domain/usecases/get_random_quote.dart';
-import 'package:quotes/features/random_quotes/presentation/widgets/quote_card.dart';
+import 'package:quotes/core/widgets/quote_card.dart';
 
 part 'random_quotes_state.dart';
 
@@ -26,8 +26,9 @@ class RandomQuotesCubit extends Cubit<RandomQuotesState> {
       response.fold(
           (failure) =>
               emit(RandomQuotesListError(msg: mapFailureToMsg(failure))),
-          (quote) => quotesList
-              .add(QuoteCard(msg: quote.content, author: quote.author)));
+          (quote) => quotesList.add(QuoteCard(
+                quote: quote,
+              )));
     }
     emit(RandomQuotesListLoaded());
   }

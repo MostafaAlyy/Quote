@@ -6,5 +6,5 @@ abstract class FavoriteQuoteRepository {
   Future<void> initFavoriteDatabase();
   Future<void> addQuoteToFavorites(Quote quote);
   Future<void> removeQuoteFromFavorites(Quote quote);
-  Future<Either<Failure, List<Quote>>> getFavoriteQuotes();
+  Future<Either<Failure, Set<Quote>>> getFavoriteQuotes();
 }

@@ -24,11 +24,12 @@ class FavoriteQuoteCubit extends Cubit<FavoriteQuoteState> {
   final AddQuoteToFavoriteUseCase addQuoteToFavoriteUseCase;
   final DeleteQuoteFromFavoriteUseCase deleteQuoteFromFavoriteUseCase;
 
-  List<Quote> quotesList = [];
+  Set<Quote> quotesList = {};
   Future<void> initFavoriteDatabase() async {
     emit(InitFavoriteDatabaseQuoteLoading());
     try {
-      initFavoriteDatabaseUseCase(NoParams());
+      await initFavoriteDatabaseUseCase(NoParams());
+      await getFavoriteQuotes();
       emit(InitFavoriteDatabaseQuoteLoaded());
     } catch (e) {
       emit(InitFavoriteDatabaseQuoteError(msg: e.toString()));
@@ -57,6 +58,14 @@ class FavoriteQuoteCubit extends Cubit<FavoriteQuoteState> {
       emit(AddQuoteToFavoriteSuccess());
     } catch (e) {
       emit(AddQuoteToFavoriteError(msg: e.toString()));
+    }
+  }
+
+  Future<void> toggleFavoriteQuote(Quote quote) async {
+    if (quotesList.contains(quote)) {
+      deleteQuoteFromFavorite(quote);
+    } else {
+      addQuoteToFavorite(quote);
     }
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quotes/features/random_quotes/domain/entities/quote.dart';
-import 'package:quotes/features/random_quotes/presentation/widgets/quote_card.dart';
+import 'package:quotes/core/widgets/quote_card.dart';
 
 class QuoteListView extends StatelessWidget {
   const QuoteListView({
@@ -16,7 +16,8 @@ class QuoteListView extends StatelessWidget {
         itemCount: quotes.length,
         itemBuilder: (context, index) {
           return QuoteCard(
-              msg: quotes[index].content, author: quotes[index].author);
+            quote: quotes[index],
+          );
         },
         separatorBuilder: (context, index) => SizedBox(
           height: 20.h,

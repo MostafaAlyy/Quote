@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:quotes/core/utils/app_colors.dart';
 import 'package:quotes/features/search/presentation/cubit/search_cubit.dart';
-import 'package:quotes/features/search/presentation/widgets/quote_list_view.dart';
+import 'package:quotes/core/widgets/quote_list_view.dart';
 import 'package:quotes/features/search/presentation/widgets/seach_bar.dart';
 import 'package:quotes/injection_container.dart' as di;
 import 'package:quotes/core/widgets/error_widget.dart' as error_widget;
@@ -17,7 +17,7 @@ class SearchPage extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
-          padding: EdgeInsets.all(12.r),
+          padding: EdgeInsets.all(10.r),
           child: BlocProvider(
             create: (context) => di.sl<SearchCubit>(),
             child: BlocBuilder<SearchCubit, SearchState>(
