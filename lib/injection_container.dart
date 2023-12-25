@@ -12,6 +12,14 @@ import 'package:quotes/features/categories/domain/repositories/categories_reposi
 import 'package:quotes/features/categories/domain/usecases/get_quote_by_category.dart';
 import 'package:quotes/features/categories/domain/usecases/get_quote_categories_usecase.dart';
 import 'package:quotes/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:quotes/features/favorite_quote/data/datasources/favoritr_local_data_source.dart';
+import 'package:quotes/features/favorite_quote/data/repositories/favorite_repository_impl.dart';
+import 'package:quotes/features/favorite_quote/domain/repositories/favorite_repository.dart';
+import 'package:quotes/features/favorite_quote/domain/usecases/add_quote_to_favorite_use_case.dart';
+import 'package:quotes/features/favorite_quote/domain/usecases/delete_quote_from_favorite_use_case.dart';
+import 'package:quotes/features/favorite_quote/domain/usecases/get_favorite_quotes_use_case.dart';
+import 'package:quotes/features/favorite_quote/domain/usecases/init_favorite_database_use_case.dart';
+import 'package:quotes/features/favorite_quote/presentation/cubit/favorite_quote_cubit.dart';
 import 'package:quotes/features/home/presentation/cubit/home_cubit.dart';
 import 'package:quotes/features/random_quotes/data/datasources/random_quote_local_data.dart';
 import 'package:quotes/features/random_quotes/data/datasources/random_quote_remote_data.dart';
@@ -45,6 +53,11 @@ Future<void> serviceLocatorInit() async {
   sl.registerFactory<SearchCubit>(() => SearchCubit(searchQuoteUseCase: sl()));
   sl.registerFactory<CategoriesCubit>(() => CategoriesCubit(
       getQuoteCategoriesUseCase: sl(), getQuoteByCategoryUseCase: sl()));
+  sl.registerFactory<FavoriteQuoteCubit>(() => FavoriteQuoteCubit(
+      addQuoteToFavoriteUseCase: sl(),
+      deleteQuoteFromFavoriteUseCase: sl(),
+      getFavoriteQuotesUseCase: sl(),
+      initFavoriteDatabaseUseCase: sl()));
 
   // Use Cases
   sl.registerLazySingleton(() => GetRandomQuote(quoteRepository: sl()));
@@ -55,6 +68,14 @@ Future<void> serviceLocatorInit() async {
       () => GetQuoteCategoriesUseCase(categoryRepository: sl()));
   sl.registerLazySingleton(
       () => GetQuoteByCategoryUseCase(categoryRepository: sl()));
+  sl.registerLazySingleton(
+      () => GetFavoriteQuotesUseCase(favoriteQuoteRepository: sl()));
+  sl.registerLazySingleton(
+      () => AddQuoteToFavoriteUseCase(favoriteQuoteRepository: sl()));
+  sl.registerLazySingleton(
+      () => DeleteQuoteFromFavoriteUseCase(favoriteQuoteRepository: sl()));
+  sl.registerLazySingleton(
+      () => InitFavoriteDatabaseUseCase(favoriteQuoteRepository: sl()));
 
   // Repository
   sl.registerLazySingleton<QuoteRepository>(() => QuoteRepositoryImpl(
@@ -69,6 +90,10 @@ Future<void> serviceLocatorInit() async {
   sl.registerLazySingleton<SearchRepository>(() => SearchRepositoryImpl(
         searchRemoteDataSource: sl(),
       ));
+  sl.registerLazySingleton<FavoriteQuoteRepository>(
+      () => FavoriteQuoteRepositoryImpl(
+            localDataSource: sl(),
+          ));
 
   // Data Sources
   sl.registerLazySingleton<RandomQuoteLocalDataSource>(
@@ -83,6 +108,8 @@ Future<void> serviceLocatorInit() async {
       () => QuoteCategoryRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<SearchRemoteDataSource>(
       () => SearchRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<FavoriteQuoteLocalDataSource>(
+      () => FavoriteQuoteLocalDataSourceImpl());
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(

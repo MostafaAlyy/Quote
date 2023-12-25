@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quotes/core/utils/app_strings.dart';
 import 'package:quotes/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:quotes/features/categories/presentation/pages/quotes_by_category.dart';
+import 'package:quotes/features/favorite_quote/presentation/cubit/favorite_quote_cubit.dart';
 import 'package:quotes/features/home/presentation/pages/home_page.dart';
 import 'package:quotes/features/random_quotes/presentation/cubit/random_quotes_cubit.dart';
 import 'package:quotes/features/splash/presentation/pages/splash_screen.dart';
@@ -30,6 +31,11 @@ class AppRoutes {
               BlocProvider(
                 create: (context) =>
                     di.sl<CategoriesCubit>()..initCategoriesList(),
+              ),
+              BlocProvider(
+                create: (context) => di.sl<FavoriteQuoteCubit>()
+                  ..initFavoriteDatabase()
+                  ..getFavoriteQuotes(),
               ),
             ],
             child: const HomePage(),

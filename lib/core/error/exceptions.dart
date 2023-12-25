@@ -53,3 +53,5 @@ class UnknownException extends ServerException {
 }
 
 class CacheException implements Exception {}
+
+class LocalDatabaseException implements Exception {}

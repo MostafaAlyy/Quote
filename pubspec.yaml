@@ -43,6 +43,7 @@ dependencies:
   http: ^1.1.2
   internet_connection_checker_plus: ^2.1.0
   shared_preferences: ^2.2.2
+  sqflite: ^2.3.0
   swipeable_card_stack: ^0.0.5
 
 dev_dependencies:
