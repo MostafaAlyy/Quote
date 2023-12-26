@@ -1,5 +1,8 @@
 # Flutter App with Bloc State Management and Clean Architecture
- ![Flutter Version](https://img.shields.io/badge/Flutter-%5E2.8.0-00897B?logo=flutter) ![Dart Version](https://img.shields.io/badge/Dart-%5E2.15.0-0175C2?logo=dart) ![License](https://img.shields.io/badge/License-MIT-blue.svg)
+ ![Flutter Version](https://img.shields.io/badge/Flutter-3.7.0-00897B?logo=flutter) 
+ ![Dart Version](https://img.shields.io/badge/Dart-3.5.0-0175C2?logo=dart)
+ ![License](https://img.shields.io/badge/License-MIT-blue.svg)
+
 
 
 
@@ -34,7 +37,7 @@ Allow users to save and revisit their favorite quotes with the Favorites feature
 - Dart: https://dart.dev/
 
 
-
+## 📘 Overview
 https://github.com/MostafaAlyy/Quote/assets/49001683/68073558-d723-4c86-9cca-054b78ae6988
 
 
