@@ -23,5 +23,11 @@ Empower users to find the perfect quote by implementing a robust search function
 Allow users to save and revisit their favorite quotes with the Favorites feature. Users can mark quotes as favorites, creating a personalized collection that they can revisit whenever they need a boost of motivation or inspiration.
 
 
+## Acknowledgments
+
+- Quotes API: [API](https://github.com/lukePeavey/quotable)
+- Flutter: https://flutter.dev/
+- Dart: https://dart.dev/
+
 https://github.com/MostafaAlyy/Quote/assets/49001683/2095750d-0618-4250-9e1c-12cd0105228f
 
