@@ -9,12 +9,12 @@
 📚 Quote app is a simple and elegant Flutter app that allows users to explore, search, and save their favorite quotes. The app comes with four main features: Home, Categories, Search, and Favorites 
 
 ✅Clean Architecture
-✅Localization
-✅Dependency Injection
-✅Bloc
+🌐Localization
+🔧Dependency Injection
+🔒Bloc
 ✅sqflite
 ✅Dio
-✅get_it(Service Locator)
+🧩get_it(Service Locator)
 
 ## Features 🎯
 1. **Home**
