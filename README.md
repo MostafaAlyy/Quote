@@ -29,5 +29,9 @@ Allow users to save and revisit their favorite quotes with the Favorites feature
 - Flutter: https://flutter.dev/
 - Dart: https://dart.dev/
 
-https://github.com/MostafaAlyy/Quote/assets/49001683/2095750d-0618-4250-9e1c-12cd0105228f
+
+
+https://github.com/MostafaAlyy/Quote/assets/49001683/68073558-d723-4c86-9cca-054b78ae6988
+
+
 
