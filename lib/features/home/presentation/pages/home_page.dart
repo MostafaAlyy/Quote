@@ -8,6 +8,7 @@ import 'package:quotes/injection_container.dart' as di;
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -40,8 +41,9 @@ class HomePage extends StatelessWidget {
             ),
             body: PageView(
               controller: cupit.pageController,
-              children: cupit.pages,
+              physics: const NeverScrollableScrollPhysics(),
               onPageChanged: (value) => cupit.changeCurrentPageIndex(value),
+              children: cupit.pages,
             ),
             bottomNavigationBar: BottomNavigationBar(
                 backgroundColor: AppColors.backgroundColor,

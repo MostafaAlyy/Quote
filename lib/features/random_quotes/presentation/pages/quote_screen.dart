@@ -9,11 +9,20 @@ import 'package:quotes/core/widgets/quote_card.dart';
 import 'package:quotes/core/utils/media_query_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class QuoteScreen extends StatelessWidget {
-  QuoteScreen({super.key});
+class QuoteScreen extends StatefulWidget {
+  const QuoteScreen({super.key});
 
+  @override
+  State<QuoteScreen> createState() => _QuoteScreenState();
+}
+
+class _QuoteScreenState extends State<QuoteScreen>
+    with AutomaticKeepAliveClientMixin<QuoteScreen> {
   final SwipeableCardSectionController cardController =
       SwipeableCardSectionController();
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
