@@ -23,17 +23,22 @@ class QuotesStack extends StatelessWidget {
             color: AppColors.primaryColor,
           ),
         ),
-        SwipeableCardsSection(
-          cardController: cardController,
-          context: context,
-          items: quotesList,
-          onCardSwiped: (dir, index, widget) {
-            if (onCardSwiped != null) {
-              onCardSwiped!();
-            }
-          },
-          enableSwipeUp: true,
-          enableSwipeDown: false,
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SwipeableCardsSection(
+              cardController: cardController,
+              context: context,
+              items: quotesList,
+              onCardSwiped: (dir, index, widget) {
+                if (onCardSwiped != null) {
+                  onCardSwiped!();
+                }
+              },
+              enableSwipeUp: true,
+              enableSwipeDown: true,
+            ),
+          ],
         ),
       ],
     );

@@ -33,9 +33,14 @@ class FavoriteQuoteScreen extends StatelessWidget {
                   condition: cupit.quotesList.isEmpty,
                   builder: (context) =>
                       const Center(child: Text('No favorite quotes')),
-                  fallback: (context) => QuoteListView(
-                      quotes:
-                          FavoriteQuoteCubit.get(context).quotesList.toList()),
+                  fallback: (context) => Column(
+                    children: [
+                      QuoteListView(
+                          quotes: FavoriteQuoteCubit.get(context)
+                              .quotesList
+                              .toList()),
+                    ],
+                  ),
                 ));
           }
         },
